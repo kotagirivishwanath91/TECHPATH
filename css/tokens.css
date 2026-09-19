@@ -1,0 +1,54 @@
+/**
+ * TECHPATH — PRECISION TELEMETRY DESIGN TOKENS
+ * Complies with Stitch design specifications:
+ * Primary: #e11d48, Canvas: #0b0d12 / #f9f9ff, Slate: #111827
+ * Fonts: Space Grotesk (Headlines), Hanken Grotesk (Body), JetBrains Mono (Code/Telemetry)
+ */
+
+:root {
+  /* Color System */
+  --tp-primary: #e11d48;
+  --tp-primary-hover: #ff4d5a;
+  --tp-primary-glow: rgba(225, 29, 72, 0.25);
+  --tp-primary-light: rgba(225, 29, 72, 0.12);
+
+  /* Dark Canvas (Obsidian & Cosmic Slate) */
+  --tp-bg-dark: #0b0d12;
+  --tp-surface-dark: #111827;
+  --tp-surface-glass-dark: rgba(23, 26, 33, 0.85);
+  --tp-border-dark: rgba(255, 255, 255, 0.08);
+  --tp-text-dark-primary: #f9fafb;
+  --tp-text-dark-secondary: #9ca3af;
+  --tp-text-dark-muted: #6b7280;
+
+  /* Light Canvas (Substrate Ice & Crisp Slate) */
+  --tp-bg-light: #f9f9ff;
+  --tp-surface-light: #ffffff;
+  --tp-surface-glass-light: rgba(255, 255, 255, 0.88);
+  --tp-border-light: rgba(226, 232, 240, 0.85);
+  --tp-text-light-primary: #111827;
+  --tp-text-light-secondary: #4b5563;
+  --tp-text-light-muted: #9ca3af;
+
+  /* Semantic Status */
+  --tp-success: #10b981;
+  --tp-warning: #f59e0b;
+  --tp-error: #ef4444;
+  --tp-info: #0284c7;
+
+  /* Typography */
+  --font-headline: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 9999px;
+
+  /* Shadows & Elevation */
+  --shadow-glass: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 12px 24px -4px rgba(0, 0, 0, 0.06);
+  --shadow-halo: 0 0 25px rgba(225, 29, 72, 0.18);
+  --shadow-deep: 0 20px 30px -10px rgba(0, 0, 0, 0.4);
+}

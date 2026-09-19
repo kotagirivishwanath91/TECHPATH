@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TechPath — Learn. Build. Prepare. Grow. The complete engineering learning platform from classroom to career." />
+  <meta name="theme-color" content="#e11d48" />
+  <meta name="application-name" content="TechPath" />
+  <meta property="og:title" content="TechPath — From Classroom to Career" />
+  <meta property="og:description" content="Learn. Build. Prepare. Grow." />
+  <title>TechPath — From Classroom to Career</title>
+
+  <!-- PWA Web Manifest -->
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
+
+  <!-- Google Fonts: Space Grotesk + Hanken Grotesk + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Three.js for 3D WebGL Visualization (Deferred so it never blocks page preview) -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- PDF.js for High-Fidelity PDF Text Extraction & Vector OCR (Deferred) -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <!-- Stylesheets (v3.0 Master Rebuild) -->
+  <link rel="stylesheet" href="css/tokens.css?v=3.0" />
+  <link rel="stylesheet" href="css/base.css?v=3.0" />
+  <link rel="stylesheet" href="css/components.css?v=3.0" />
+  <link rel="stylesheet" href="css/3d.css?v=3.0" />
+  <link rel="stylesheet" href="css/animations.css?v=3.0" />
+</head>
+<body>
+  <!-- Accessibility Skip Link -->
+  <a href="#main-viewport" class="skip-link">Skip to Primary Content</a>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-consent-banner" class="tp-cookie-banner" role="dialog" aria-label="Cookie Preferences" style="display:none;">
+    <div class="tp-cookie-content">
+      <div>
+        <strong>Cookie Preferences</strong>
+        <p>TechPath uses essential cookies only. Read our <a href="#/terms" style="color:var(--tp-primary);text-decoration:underline;">Terms of Use</a> and <a href="#/legal/privacy" style="color:var(--tp-primary);text-decoration:underline;">Privacy Policy</a>.</p>
+      </div>
+      <div class="tp-cookie-actions" style="display:flex;align-items:center;gap:0.5rem;">
+        <button id="cookie-reject-btn" class="tp-btn tp-btn-ghost">Reject Non-Essential</button>
+        <button id="cookie-manage-btn" class="tp-btn tp-btn-secondary">Manage</button>
+        <button id="cookie-accept-btn" class="tp-btn tp-btn-primary">Accept All</button>
+        <button id="cookie-close-btn" class="tp-btn tp-btn-ghost" style="padding:0.4rem 0.6rem;font-size:1.1rem;line-height:1;" aria-label="Close banner">×</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Toast Notification Container -->
+  <div id="tp-toast-root" aria-live="polite" aria-atomic="false" class="tp-toast-root"></div>
+
+  <!-- Global Modal Root -->
+  <div id="tp-modal-root"></div>
+
+  <!-- Global TechPath Cube Opening Animation (Hidden by default for instant rendering & preview reliability) -->
+  <div id="cube-overlay" class="tp-cube-overlay" aria-label="TechPath Opening Animation" aria-hidden="true" style="display: none;">
+    <div class="tp-cube-stage">
+      <div id="glass-cube" class="tp-glass-cube">
+        <div class="cube-face cube-face-front"></div>
+        <div class="cube-face cube-face-back"></div>
+        <div class="cube-face cube-face-right"></div>
+        <div class="cube-face cube-face-left"></div>
+        <div class="cube-face cube-face-top"></div>
+        <div class="cube-face cube-face-bottom"></div>
+      </div>
+    </div>
+
+    <div id="reveal-brand" class="tp-reveal-brand">
+      <div class="tp-reveal-logo">TECH<span>PATH</span></div>
+      <div class="tp-reveal-tagline">Learn. Build. Prepare. Grow.</div>
+      <div class="tp-reveal-subtagline">From Classroom to Career.</div>
+    </div>
+  </div>
+
+  <!-- Primary Application Architecture -->
+  <div id="app">
+    <!-- Responsive Navigation Rail -->
+    <nav id="nav-rail-root" aria-label="Main Navigation"></nav>
+
+    <!-- Main Viewport Container -->
+    <div class="app-main">
+      <div id="header-root"></div>
+      <main id="main-viewport" class="viewport-content" role="main" tabindex="-1"></main>
+
+      <!-- Global Application Footer with Organized Navigation -->
+      <footer id="tp-global-footer" class="tp-global-footer" role="contentinfo">
+        <div class="tp-footer-inner">
+          
+          <!-- Brand & Mission Column -->
+          <div class="tp-footer-col tp-footer-col-brand">
+            <div class="tp-footer-brand">
+              <a href="#/dashboard" class="tp-footer-logo" aria-label="TechPath Home">
+                TECH<span style="color:var(--tp-primary)">PATH</span>
+              </a>
+            </div>
+            <p class="tp-footer-tagline">Learn. Build. Prepare. Grow.</p>
+            <p class="tp-footer-subtagline">From Classroom to Career.</p>
+            <div class="tp-footer-copy">
+              &copy; 2026 TechPath Platform Governance Board. All rights reserved.
+            </div>
+          </div>
+
+          <!-- Legal & Privacy Column -->
+          <div class="tp-footer-col">
+            <h4 class="tp-footer-heading">Legal &amp; Privacy</h4>
+            <ul class="tp-footer-nav" role="list">
+              <li><a href="#/terms" class="tp-footer-link" id="footer-terms-link">Terms of Use</a></li>
+              <li><a href="#/legal/privacy" class="tp-footer-link" id="footer-privacy-link">Privacy Policy</a></li>
+              <li><a href="#/preferences?tab=cookies" class="tp-footer-link" id="footer-cookies-link">Cookie Preferences</a></li>
+              <li><a href="#/legal/privacy" class="tp-footer-link" id="footer-privacy-data-link">Privacy &amp; Data</a></li>
+              <li><a href="#/legal/deletion-request" class="tp-footer-link" id="footer-deletion-link">Data Deletion Request</a></li>
+            </ul>
+          </div>
+
+          <!-- Support Column -->
+          <div class="tp-footer-col">
+            <h4 class="tp-footer-heading">Support</h4>
+            <ul class="tp-footer-nav" role="list">
+              <li><a href="#/faq" class="tp-footer-link" id="footer-faq-link">FAQs</a></li>
+              <li><a href="#/contact" class="tp-footer-link" id="footer-contact-link">Contact Us</a></li>
+              <li><a href="#/contact?tab=tickets" class="tp-footer-link" id="footer-tickets-link">Support Tickets</a></li>
+            </ul>
+          </div>
+
+          <!-- Account / Preferences Column -->
+          <div class="tp-footer-col">
+            <h4 class="tp-footer-heading">Account / Preferences</h4>
+            <ul class="tp-footer-nav" role="list">
+              <li><a href="#/settings" class="tp-footer-link" id="footer-settings-link">Settings</a></li>
+              <li><a href="#/preferences" class="tp-footer-link" id="footer-preferences-link">Preferences</a></li>
+            </ul>
+          </div>
+
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Native ES Module Bootstrap (v3.0 Master Rebuild) -->
+  <script type="module" src="js/app.js?v=3.0"></script>
+
+</body>
+</html>

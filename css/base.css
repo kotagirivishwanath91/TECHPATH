@@ -1,0 +1,217 @@
+/**
+ * TECHPATH — BASE STYLES & RESPONSIVE GRID
+ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  background-color: var(--tp-bg-dark);
+  color: var(--tp-text-dark-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Light Mode Overrides */
+body.light-theme {
+  background-color: var(--tp-bg-light);
+  color: var(--tp-text-light-primary);
+}
+
+/* Accessibility Skip Link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 1rem;
+  background: var(--tp-primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  z-index: 1000;
+  border-radius: var(--radius-sm);
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: inherit;
+}
+
+.display-lg {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.headline-xl {
+  font-size: 2rem;
+  line-height: 1.25;
+}
+
+.headline-lg {
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+.headline-md {
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.mono-chip {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Main Layout Shell */
+#app {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  overflow-y: visible;
+}
+
+.app-rail {
+  width: 260px;
+  background: var(--tp-surface-dark);
+  border-right: 1px solid var(--tp-border-dark);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 50;
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+}
+
+body.light-theme .app-rail {
+  background: var(--tp-surface-light);
+  border-right: 1px solid var(--tp-border-light);
+}
+
+.app-main {
+  flex: 1;
+  margin-left: 260px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: transparent;
+  width: calc(100% - 260px);
+  overflow-y: visible;
+}
+
+.app-header {
+  height: 68px;
+  border-bottom: 1px solid var(--tp-border-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background: rgba(11, 13, 18, 0.75);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+body.light-theme .app-header {
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid var(--tp-border-light);
+}
+
+.viewport-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  overflow-y: visible;
+  min-height: calc(100vh - 68px);
+}
+
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 1024px) {
+  .app-rail {
+    width: 72px;
+  }
+  .app-rail .nav-label, .app-rail .brand-text {
+    display: none;
+  }
+  .app-main {
+    margin-left: 72px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-rail {
+    transform: translateX(-100%);
+    width: 260px;
+  }
+  .app-rail.mobile-open {
+    transform: translateX(0);
+  }
+  .app-main {
+    margin-left: 0;
+  }
+  .viewport-content {
+    padding: 1rem;
+  }
+  .app-header {
+    padding: 0 1rem;
+  }
+  .display-lg {
+    font-size: 1.85rem;
+  }
+}
+
+/* ── RTL LOCALIZATION SUPPORT (Arabic, Hebrew, Persian, Urdu) ───────────── */
+html[dir="rtl"], body.tp-rtl {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Segoe UI', Tahoma, 'Geeza Pro', Arial, sans-serif;
+}
+
+html[dir="rtl"] .tp-header-left,
+html[dir="rtl"] .tp-header-right,
+html[dir="rtl"] .tp-auth-row,
+html[dir="rtl"] .tp-nav-item {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .tp-nav-rail {
+  border-right: none;
+  border-left: 1px solid var(--tp-border-dark);
+}
+
+html[dir="rtl"] .tp-spec-val,
+html[dir="rtl"] .tp-input,
+html[dir="rtl"] textarea {
+  text-align: right;
+}
+
+html[dir="rtl"] .mono-chip,
+html[dir="rtl"] .telemetry-chip,
+html[dir="rtl"] pre,
+html[dir="rtl"] code {
+  direction: ltr;
+  text-align: left;
+}
+
